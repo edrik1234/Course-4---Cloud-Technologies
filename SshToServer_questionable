@@ -28,7 +28,7 @@ class SshToServer:
             stdin, stdout, stderr = self.sshClient.exec_command(command)
             output = stdout.read().decode()
             error  = stderr.read().decode()
-            if output == (None or "" or "\u200B"):
+            if output is None or output.strip() in ("", "\u200B", "\n\u200B"):
                 print(F"error is {error}")
                 return error
             else:
